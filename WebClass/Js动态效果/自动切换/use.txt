@@ -1,0 +1,4 @@
+1. css.css中:
+	.mF_tab .btn li.current { height:27px; background:green; } /** 修改选中颜色 **/
+2. myfocus.js中:
+	最后一行修改内容高度
