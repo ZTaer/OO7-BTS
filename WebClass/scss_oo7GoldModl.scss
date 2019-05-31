@@ -5,18 +5,20 @@
 	1.	flex函数类
 		1-0. 开启弹性布局,有兼容性: display-flex( [flex-direction] )
 		1-1. 单行flex布局，含兼容性: xy-items( justify-content, align-items, [flex-wrap] );
-		1-2. 多行flex布局，含兼容性: xy_content( justify-content, align-items, align-content, [flex-wrap] )
+		1-2. 多行flex布局，含兼容性: xy-content( justify-content, align-items, align-content, [flex-wrap] )
 	2. 颜色类
 	3. 字体类
+		3-0. 快捷设置字体格式: font-style( 字体大小, 字体颜色, 字体宽度, 字间距, 字种类，字大小单位 )
 	4. 布局类
-		4-0. 根据宽度"等比例缩放"大小高度: img_autosize( 图片宽度,图片高度,容器宽度,容器单位 );
+		4-0. 根据宽度"等比例缩放"大小高度: img-autosize( 图片宽度,图片高度,容器宽度,容器单位 );
+		4-1. 设置主要内容区域,留出二边间隔,默认0/1200/1920大小为中间内容: div-content( 上下内间大小,书写主要内容区域大小,占用真实空间大小 );
 	
 */
 
 // 0. 防出错类-BGN
 *{
 	margin:0px;
-	paddding:0px;
+	padding:0px;
 }
 ul,li{
 	list-style:none;
@@ -43,7 +45,7 @@ a{
 	// 1-1. 单行flex布局，含兼容性
 	//	用法:
 	//		xy-items( justify-content, align-items, [flex-wrap] );
-	@mixin xy_items( $x, $y, $nowrap:nowrap ){
+	@mixin xy-items( $x, $y, $nowrap:nowrap ){
 		justify-content:$x;
 		-webkit-justify-content:$x;
 		
@@ -57,12 +59,9 @@ a{
 	// 1-2. 多行flex布局，含兼容性
 	// 用法:
 	//		xy_content( justify-content, align-items, align-content, [flex-wrap] )
-	@mixin xy_content( $xx, $y1, $yy, $wrap:wrap ){
+	@mixin xy-content( $xx, $yy, $wrap:wrap ){
 		justify-content:$xx;
 		-webkit-justify-content:$xx;
-		
-		align-items:$y1;
-		-webkit-align-items:$y1;
 		
 		align-content:$yy;
 		-webkit-align-content:$yy;
@@ -74,14 +73,40 @@ a{
 
 // 1. flex函数类-END
 
+// 3. 字体类-BGN
+
+	// 3-0. 快捷设置字体格式
+	// 用法:
+	//		font_style( 字体大小, 字体颜色, 字体宽度, 字间距, 字种类, 字大小单位 )
+	//		变量名称为语法的缩写,方便调入修改参数
+	@mixin font-style( $fs:15, $c:#696969, $fw:"normal",  $ls:3, $ff:"微软雅黑", $unit:"px" ){
+		font-size:$fs + unquote($unit);
+		color:$c;
+		font-weight: unquote($fw);
+		letter-spacing: $ls + unquote("px");
+		font-family: unquote($ff);
+	}
+
+// 3. 字体类-END
+
 // 4. 布局类-BGN
 	
 	// 4-0. 根据宽度"等比例缩放"大小高度
 	//	用法:
 	//		img_autosize( 图片宽度,图片高度,容器宽度,容器单位 );
-	@mixin img_autosize( $imgW, $imgH, $viewWidth, $viewUnit ){
+	@mixin img-autosize( $imgW, $imgH, $viewWidth, $viewUnit ){
 		width:#{$viewWidth}#{$viewUnit};
 		height:calc( #{$viewWidth}#{$viewUnit} / #{$imgW} * #{$imgH} );
+		display:block;
+	}
+	
+	// 4-1. 设置主要内容区域,留出二边间隔,默认1200/1920大小为中间内容
+	//	用法:
+	//		div_content( 上下内间大小,距书写主要内容区域大小,占用真实空间大小 );
+	@mixin div-content( $tb_padding:0, $div_w:1200, $screen_w:1920  ){
+		$rl_padding:( 100 - ( $div_w / $screen_w ) * 100 ) / 2;
+		width:( 100 - $rl_padding * 2 ) + unquote("%") ;
+		padding: $tb_padding + unquote("px")  $rl_padding + unquote("%"); // $a + unquote("%") 设置单位( 删除字符串中的引号 )
 	}
 
 // 4. 布局类-END
