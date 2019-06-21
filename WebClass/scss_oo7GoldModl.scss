@@ -146,7 +146,7 @@ a{
 	//	用法:
 	//		img-autosize( 图片宽度,图片高度,容器宽度,容器单位 );
 	@mixin img-autosize( $imgW, $imgH, $viewWidth, $viewUnit:vw ){
-		width:#{$viewWidth}#{$viewUnit};
+		width:$viewWidth + unquote("%");
 		height:calc( #{$viewWidth}#{$viewUnit} / #{$imgW} * #{$imgH} );
 		display:block;
 		background: cover;
