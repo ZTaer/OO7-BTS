@@ -1,5 +1,5 @@
 
-/*********** scss_oo7GoldModl v2.0 目录 *****/
+/*********** scss_oo7GoldModl_bt4_v2.0 目录 *****/
 /*
 	scss_oo7GoldModl为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
@@ -24,46 +24,13 @@
 		4-3. pc端翻页样式,只适合页面数小于10页,并且要求ul结构为 ul -> li -> a: ul-fanye-pc( 按钮边框设置, 按钮外间距, 按钮内间距, 按钮背景颜色, 按钮字体颜色 );
 	5. 动画类
 		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 );
+	6.  其他类
+		6-0. 翻页样式主要用于快速的实现效果,样式直接修改a样式即可 li a{ 等.. } : ul-fanye-pc( 无 );
 	
 */
 
-// 0. 防出错类-BGN
-*{
-	margin:0;
-	padding:0;
-	border: 0;
-}
-// 考虑到兼容性
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
-
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-
 ol,ul,li{
 	list-style:none;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
 }
 
 a{
@@ -197,7 +164,7 @@ a{
 	//		img-window( 图片宽度,图片高度,图片x方向位置,图片y方向位置 );
 	@mixin img-window( $img_w, $img_h, $img_wh:100%, $img_x:center, $img_y:center ){
 		width: $img_w;
-		height: $img_h;
+		max-height: $img_h;
 		overflow: hidden;
 		@include display-flex();
 		@include xy-items( $img_x, $img_y );
@@ -263,3 +230,34 @@ a{
 
 // 5. 动画类-END
 
+// 6. 其他类-BGN
+// 6-0.	翻页样式主要用于快速的实现效果 
+	//	用法:
+	//		ul-fanye-pc( 无 );
+	//  实例:
+	//		ul-fanye-pc( 无 );
+	//      样式直接修改a样式即可 li a{ 等.. }
+
+	@mixin ul-fanye-pc(){
+		@include display-flex();
+		@include xy-items(center,center);
+		margin-bottom:15px;
+		cursor:pointer;
+		text-indent: 0;
+		width:100%;
+		li{
+			margin:5px;
+			a{
+				color:#444c6b;
+				padding:10px;
+				border: 1px solid #c9c9c9;
+
+				&:hover{
+					background: #444c6b;
+					color: #f8f8f8;
+				}
+			}
+		}
+	}
+
+// 6. 其他类-END
