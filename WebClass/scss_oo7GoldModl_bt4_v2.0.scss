@@ -17,6 +17,8 @@
 		3-0. 快捷设置字体格式: font-style( 字体大小, 字体颜色, 字体宽度, 字间距 )
 		3-1. 字体不换行且文本溢出时显示省略标记(...): font-nowrap();
 		3-2. 字体自动换行文本溢出时显示省略标记(...): font-wrap(); // 暂时维护
+		3-3. 常用中文字体以及图片排版,图片为自适应,支持电脑/移动端: font-zh( 字体大小, 字体颜色, 字体行高, 字体间距  ) ps: 使用默认值即可 ;
+
 	4. 布局类
 		4-0. 根据宽度"等比例缩放"大小高度: img-autosize( 原始图片宽度,原始图片高度,容器宽度,容器单位 );
 		4-1. 设置主要内容区域,留出二边间隔,默认0/1200/1920大小为中间内容: div-content( 上下内间大小,书写主要内容区域大小,占用真实空间大小 );
@@ -25,7 +27,6 @@
 	5. 动画类
 		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 );
 	6.  其他类
-		6-0. 翻页样式主要用于快速的实现效果,样式直接修改a样式即可 li a{ 等.. } : ul-fanye-pc( 无 );
 	
 */
 
@@ -134,7 +135,33 @@ a{
             text-overflow:ellipsis;   //当对象内文本溢出时显示省略标记(...) ,需与overflow:hidden;一起使用.
 	}
 
+	// 3-3. 常用中文字体以及图片排版,图片为自适应,支持电脑/移动端
+	//	用法:
+	//		font-zh( 字体大小, 字体颜色, 字体行高, 字体间距 );
+	// 		@include font-zh( 使用默认值即可 );
+	@mixin font-zh( $fz:1rem, $c:#696969, $lh:30px, $ls:3px ){
+		text-indent: 2em;
+        font-family: '微软雅黑';
+        font-size: $fz;
+        letter-spacing: $ls;
+        line-height: $lh;
+		overflow: hidden;
+		color: $c;
+        img{
+            display: block;
+			max-width:100%;
+			height:auto;
+            margin:1rem auto;
+        }
+        @media( max-width:765px ){
+            letter-spacing: $ls + 1px;
+            line-height: $lh - 2px;
+		}	
+	}
+
 // 3. 字体类-END
+
+
 
 // 4. 布局类-BGN
 	
@@ -184,6 +211,8 @@ a{
 		cursor:pointer;
 		text-indent: 0;
 		width:100%;
+		padding:0px;
+
 		li{
 			margin:$btn_m;
 			a{
@@ -200,6 +229,7 @@ a{
 					background: $c;
 					border-color: $c;
 					color: $btn_bg;
+					text-decoration: none;
 				}
 			}
 		}
@@ -231,33 +261,4 @@ a{
 // 5. 动画类-END
 
 // 6. 其他类-BGN
-// 6-0.	翻页样式主要用于快速的实现效果 
-	//	用法:
-	//		ul-fanye-pc( 无 );
-	//  实例:
-	//		ul-fanye-pc( 无 );
-	//      样式直接修改a样式即可 li a{ 等.. }
-
-	@mixin ul-fanye-pc(){
-		@include display-flex();
-		@include xy-items(center,center);
-		margin-bottom:15px;
-		cursor:pointer;
-		text-indent: 0;
-		width:100%;
-		li{
-			margin:5px;
-			a{
-				color:#444c6b;
-				padding:10px;
-				border: 1px solid #c9c9c9;
-
-				&:hover{
-					background: #444c6b;
-					color: #f8f8f8;
-				}
-			}
-		}
-	}
-
 // 6. 其他类-END
