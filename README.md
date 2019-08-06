@@ -1,12 +1,33 @@
 
-<h1>记录工作中或者学习中遇到的黄金模块,防止重复造轮子</h1>
-<br />
-<br />
-<h2>WebClass:</h2><br />
-	<h3>JavaScript_OO7_GoldModl.js:</h3> <br />
-		0.	检测移动端进行跳转-本地文件 <br />
-		1.	检测移动端进行跳转-域名 <br />
-	<h3>Js动态效果</h3> <br />
-		0.	自动切换
-	<h3>scss_oo7GoldModl.scss:</h3> <br />
-		0. scss自开发黄金模块
+<h1>记录工作中或者学习中遇到的/自我开发的黄金模块,防止重复造轮子</h1>
+
+<hr/>
+<pre>
+	<h2>WEB_GoldModl:</h2>
+		<h3>0. JS_GoldModl - 自我开发JS轻量级框架:</h3>
+			<b>a) 等待更新</b>
+				javaScript_OO7GoldModl.js
+		<h3>1. SCSS_GoldModl - 自我开发SCSS轻量级框架:</h3>
+			<b>a) BootStrap4 - 专用版</b>
+				scss_oo7GoldModl_bt4_v2.0.scss
+			<b>b) 普通版</b>
+				scss_oo7GoldModl.scss
+				scss_oo7GoldModl_v2.0.scss
+</pre>
+<hr/>
+
+
+<hr/>
+<pre>
+	<h2>TEST:</h2>
+		<h3>0. 实验区,实验些代码</h3>
+</pre>
+<hr/>
+
+
+<hr/>
+<pre>
+	<h2>WORK:</h2>
+		<h3>0. 实战时方便在此文件夹中调用需要的框架</h3>
+</pre>
+<hr/>
