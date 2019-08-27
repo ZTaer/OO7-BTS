@@ -3,7 +3,7 @@
 /*
 	scss_oo7GoldModl为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
-	源码链接: https://github.com/ZTaer/OO7_GoldModl/tree/master/WebClass
+	源码链接: https://github.com/ZTaer/OO7_GoldModl/tree/master/WEB_GoldModl/SCSS_GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
 	
 	0. 防出错类
@@ -139,7 +139,7 @@ a{
 	//	用法:
 	//		font-zh( 字体大小, 字体颜色, 字体行高, 字体间距 );
 	// 		@include font-zh( 使用默认值即可 );
-	@mixin font-zh( $fz:1rem, $c:#696969, $lh:30px, $ls:3px ){
+	@mixin font-zh( $fz:15px, $c:#696969, $lh:30px, $ls:3px ){
 		text-indent: 2em;
         font-family: '微软雅黑';
         font-size: $fz;
@@ -148,10 +148,10 @@ a{
 		overflow: hidden;
 		color: $c;
         img{
-            display: block;
-			max-width:100%;
-			height:auto;
-            margin:1rem auto;
+            display: block !important;
+			max-width:100% !important;
+			height:auto !important;
+            margin:1rem auto ;
         }
         @media( max-width:765px ){
             letter-spacing: $ls + 1px;
