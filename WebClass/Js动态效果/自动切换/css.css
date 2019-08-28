@@ -1,8 +1,0 @@
-
-.mF_tab { width:426px; height:90px; margin-left:16px; }
-.mF_tab .btn { position:absolute; top:0; left:0; z-index:2; }
-.mF_tab .btn li { float:left; width:80px; height:26px; line-height:26px; text-align:center; margin-right:2px; border:1px solid #dedede; border-bottom:0; cursor:pointer; background:#f1f1f1; }
-.mF_tab .btn li.current { height:27px; background:green; } /** 修改选中颜色 **/
-.mF_tab .cont { position:absolute; top:27px; left:0; border:1px solid #dedede; overflow:hidden; }
-.mF_tab .cont .swt { position:absolute; left:0; top:0; }
-.mF_tab .cont .swt li p { padding:16px; }
