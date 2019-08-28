@@ -7,7 +7,7 @@
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
 	
 	0. 防出错类
-	1.	字符串类
+	1. 字符串类
         
 	2. 计算类
         
@@ -18,7 +18,7 @@
 
     4. 交互类
 
-    6.  其他类
+    6. 其他类
 	
 */
 
@@ -33,6 +33,12 @@ const oo7 = ( function(){
     //      0. Animate.css
     //              CDN: <link rel="stylesheet" href="https://cdn.staticfile.org/animate.css/3.7.2/animate.css">
     //              效果查询: https://daneden.github.io/animate.css/
+    //              常用类: 
+    //                  延迟动画: .delay-1s ... .delay-5s
+    //                  时间动画: 
+    //                      加速: .fast( 800ms ) .faster( 500ms )
+    //                      减速: .slow( 2s ) .slower( 3s )
+    //                  无限循环: .infinite
     //      1. ScrollWatch.js
     //              CDN: <script src="https://cdn.jsdelivr.net/npm/scrollwatch@2.0.1/dist/ScrollWatch-2.0.1.min.js" integrity="sha256-jmgGQvZd2hgK8fxYGFYWPni/wP3c6/JkiMdUq5Ww3j8=" crossorigin="anonymous"></script>
     //              效果查询: https://edull24.github.io/ScrollWatch/
@@ -66,7 +72,7 @@ const oo7 = ( function(){
     //      0. Animate.css
     //      1. ScrollWatch.js
     //	用法:
-    //      HTML: 待动画标签加入.oo7-Animate
+    //      HTML: 待动画标签加入类名.oo7-Animate
     //      CSS: .oo7-Animate{ opacity: 0; }
     //      JS: moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
     //  示例:
