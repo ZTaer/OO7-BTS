@@ -83,7 +83,7 @@ const oo7 = ( function(){
             for( cur of classGroup ){
                 let target = `${fatherId} ${cur}`; 
 
-                document.querySelector(target).classList.toggle('oo7-Animate');
+                document.querySelector(target).classList.toggle('oo7-animate');
                 animateCSS(target, animate);
 
                 if( animateClass ){

@@ -30,6 +30,7 @@
 	
 */
 
+// 0. 防出错类-BGN
 ol,ul,li{
 	list-style:none;
 }
@@ -38,6 +39,9 @@ a{
 	text-decoration:none;
 }
 
+.oo7-animate{ 
+	opacity: 0; 
+}
 // 0. 防出错类-END
 
 
