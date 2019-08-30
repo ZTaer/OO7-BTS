@@ -26,7 +26,7 @@
 		4-3. pc端翻页样式,只适合页面数小于10页,并且要求ul结构为 ul -> li -> a: ul-fanye-pc( 按钮边框设置, 按钮外间距, 按钮内间距, 按钮背景颜色, 按钮字体颜色 );
 	5. 动画类
 		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 );
-		5-1.
+		5-1. 自适应背景视频，与oo7.backgroundVideo()配合: background-video-init( 背景图片路径 ); - 简便方法,css中直接写在父类下,HTML要写入对应的class类名
 	6.  其他类
 	
 */
@@ -263,37 +263,37 @@ a{
 		transform: scale($size_num,$size_num);
 	}
 
-	// 5-1. 自适应背景视频，与oo7.backgroundVideo();配合
+	// 5-1. 自适应背景视频，与oo7.backgroundVideo()配合
 	//	用法:
+	//    方法一:
 	//		background-video-father(); - 使用在video标签父类容器
 	//      background-video-tab( 图片absolute的x位置, 图片absolute的y位置, 相对位置x, 相对位置y ); - 使用在video标签
 	//		background-video-img( 背景图片路径 ); - 使用在子类div标签
 	//      background-video-container(); - 使用在子类div标签
+	//	  方法二:
+    //      background-video-init( 背景图片路径 ); - 简便方法,在CSS中直接写在父类下,HTML要写入对应的class类名
 	//  实例:
 	//		HTML:
 	//			<div id="test" >
-	// 				<video id="background-video" loop muted></video>
-	//   			<div class="bv-img"></div>
-	//   			<div class="bv-container"></div>
+	// 				<video id="background-video-tab" loop muted></video>
+	//   			<div class="background-video-img"></div>
+	//   			<div class="background-video-container"></div>
 	//      	</div>
 	// 		CSS:
 	// 			#test{ 
-	//				@include background-video-father();
-	//	
-	//				.background-video{ @include background-video-tab() };
-	//				.bv-img{ @include background-video-img() };
-	//				.bv-container{ @include background-video-container() };
+    // 				方法二
+	//				@include background-video-init( 'test.jpg' );
 	//			}
 	//      js:
 	//			let bv;
-	//          解析: oo7.backgroundVideo( 变量名称, 'css父类容器名','css标签video名',['网页视频路径','本地视频路径'],'视频缓冲图片路径','达到指定分辨率时禁止播放( 默认为768px )' );
- 	//			oo7.backgroundVideo(bv,'#test','.background-video',['网页视频路径','本地视频路径'],'.bv-img',0);
-	// 			
+ 	//			oo7.backgroundVideo(bv,'#test',['网页视频路径','本地视频路径'],'.background-video-tab','.background-video-img',0);
+	// 			解析: oo7.backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
 
 	@mixin background-video-father(){
 		overflow: hidden;
-		position: absolute;
-		top: 0; left: 0; right: 0; bottom: 0;
+		position: relative;
+		left: 0; 
+		right: 0;
 	}
 
 	@mixin background-video-tab( $topX:50%, $topY:50%, $relativeX:-50%, $relativeY:-50% ){
@@ -315,7 +315,7 @@ a{
 
 		width: 100%; height: 100%;
 
-		background: url("#{$imgSrc}") no-repeat;
+		background: url( "#{$imgSrc}" ) no-repeat;
 		background-size: cover;
 		background-position: center;
 	}
@@ -323,6 +323,44 @@ a{
 	@mixin background-video-container() {
 		position: absolute;
 		top: 0; right: 0; left: 0; bottom: 0;
+	}
+	
+	// 便捷式使用方式
+	@mixin background-video-init( $imgSrc ){
+		overflow: hidden;
+		position: relative;
+		left: 0; 
+		right: 0; 
+
+		.background-video-tab{
+			// 为剧中
+			position: absolute;
+			top: 50%; 
+			left: 50%;
+	
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%); /* IE 9 */
+			-webkit-transform: translate(-50%, -50%); /* Safari and Chrome */
+			
+			object-fit: cover;
+			height: 100%; width: 100%;
+		}
+
+		.background-video-img{
+			position: absolute;
+	
+			width: 100%; height: 100%;
+	
+			background: url( "#{$imgSrc}" ) no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.background-video-container{
+			position: absolute;
+			top: 0; right: 0; left: 0; bottom: 0;
+		}
+
 	}
 
 // 5. 动画类-END
