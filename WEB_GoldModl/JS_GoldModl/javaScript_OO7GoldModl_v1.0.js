@@ -15,7 +15,7 @@
         3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
         3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
         3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
-        3-3. 自适应背景视频，与scss_oo7GoldModl_bt4_v2.0.scss配合: oo7.backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+        3-3. 自适应背景视频，与scss_oo7GoldModl_bt4_v2.0.scss配合: backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
     4. 交互类
 
     6. 其他类
@@ -75,7 +75,7 @@ const oo7 = ( function( global ){
     //      1. ScrollWatch.js
     //	用法:
     //      HTML: 待动画标签加入类名.oo7-Animate
-    //      CSS: .oo7-Animate{ opacity: 0; }
+    //      CSS: .oo7-animate{ opacity: 0; }
     //      JS: moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
     //  示例:
     //      activeId = 'test' // 当前视图ID
