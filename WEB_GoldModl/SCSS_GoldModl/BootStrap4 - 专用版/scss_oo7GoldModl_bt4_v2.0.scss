@@ -25,7 +25,7 @@
 		4-2. 图片不变形显示,防止在后台因放不同尺寸图片，造成前台因图片尺寸不同造成的布局变形,默认图片位置为center: img-window( 图片宽度,图片高度,图片x方向位置,图片y方向位置 );
 		4-3. pc端翻页样式,只适合页面数小于10页,并且要求ul结构为 ul -> li -> a: ul-fanye-pc( 按钮边框设置, 按钮外间距, 按钮内间距, 按钮背景颜色, 按钮字体颜色 );
 	5. 动画类
-		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 );
+		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 ); img-transform-scale-window( 放大倍数 ) - 与img-window()配合;
 		5-1. 自适应背景视频，与oo7.backgroundVideo()配合: background-video-init( 背景图片路径 ); - 简便方法,css中直接写在父类下,HTML要写入对应的class类名
 	6.  其他类
 	
@@ -252,6 +252,7 @@ a{
 	//	用法:
 	//		img-transition( 动画时间 );
 	//      img-transform-scale( 放大倍数 );
+	// 		img-transform-scale-window( 放大倍数 ) - 与img-window()配合
 	//  实例:
 	//		img{ @include img-transition( 0.3 ); }
 	//		&:hover img{ @include img-transform-scale( 1.1 ); }
@@ -267,6 +268,13 @@ a{
 		-webkit-transform: scale($size_num,$size_num);
 		-moz-transform: scale($size_num,$size_num);
 		transform: scale($size_num,$size_num);
+	}
+
+	@mixin img-transform-scale-window( $size_num ){
+		-webkit-transform: scale($size_num,$size_num);
+		-moz-transform: scale($size_num,$size_num);
+		transform: scale($size_num,$size_num);
+		left:0;
 	}
 
 	// 5-1. 自适应背景视频，与oo7.backgroundVideo()配合
