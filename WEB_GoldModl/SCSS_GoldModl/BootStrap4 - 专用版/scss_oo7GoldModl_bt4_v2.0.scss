@@ -13,6 +13,7 @@
 		1-2. 多行flex布局，含兼容性: xy-content( justify-content, align-items, align-content, [flex-wrap] )
 	2. 颜色类
 		2-0. 预计开发快捷渐变
+		2-1. 修改placeholder颜色: placeholder-color( 字体大小, 字体颜色, 字间距 )
 	3. 字体类
 		3-0. 快捷设置字体格式: font-style( 字体大小, 字体颜色, 字体宽度, 字间距 )
 		3-1. 字体不换行且文本溢出时显示省略标记(...): font-nowrap();
@@ -100,7 +101,7 @@ a{
 
 	// 2-1. 修改placeholder颜色
 	// 用法:
-	//		border-linear( )
+	//		placeholder-color( 字体大小, 字体颜色, 字间距 )
 	@mixin placeholder-color( $fs:15px, $c:#696969, $ls:3px ){
 
 		input::-webkit-input-placeholder{
