@@ -98,6 +98,54 @@ a{
 
 	}
 
+	// 2-1. 修改placeholder颜色
+	// 用法:
+	//		border-linear( )
+	@mixin placeholder-color( $fs:15px, $c:#696969, $ls:3px ){
+
+		input::-webkit-input-placeholder{
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+		}
+		
+        textarea::-webkit-input-placeholder{
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        textarea::-moz-placeholder{   /* Mozilla Firefox 19+ */
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        textarea:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+        textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+			font-size: $fs;
+			color:$c;
+			letter-spacing: $ls;
+        }
+	}
+
 // 2. 颜色类-END
 
 // 3. 字体类-BGN
