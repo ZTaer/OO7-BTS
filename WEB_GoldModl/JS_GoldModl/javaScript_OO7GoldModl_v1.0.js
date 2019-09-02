@@ -56,17 +56,20 @@ const oo7 = ( function( global ){
     //      target='#test'; animate='fadeInUp';
     //      animateCSS(target, animate);
     function animateCSS(element, animationName,  callback){
-        const node = document.querySelector(element)
-        node.classList.add('animated', animationName )
+
+        const node = Array.from( document.querySelectorAll(element) )
+
+        node.forEach( cur => cur.classList.add('animated', animationName ) ) 
 
         function handleAnimationEnd() {
-            node.classList.remove('animated', animationName)
-            node.removeEventListener('animationend', handleAnimationEnd)
+            node.forEach( cur => cur.classList.remove('animated', animationName) ) 
+            node[ node.length - 1 ].removeEventListener('animationend', handleAnimationEnd)
 
             if (typeof callback === 'function') callback()
         }
 
-        node.addEventListener('animationend', handleAnimationEnd)
+        node[ node.length - 1 ].removeEventListener('animationend', handleAnimationEnd)
+
     }
 
     // 3-2. 多个类执行动画,与Animate.css配合使用
@@ -85,11 +88,11 @@ const oo7 = ( function( global ){
             for( cur of classGroup ){
                 let target = `${fatherId} ${cur}`; 
 
-                document.querySelector(target).classList.toggle('oo7-animate');
+                Array.from(document.querySelectorAll(target)).forEach( cur => cur.classList.toggle('oo7-animate') );
                 animateCSS(target, animate);
 
                 if( animateClass ){
-                    arrList = Array.form( document.querySelectorAll(target) ); 
+                    arrList = Array.from( document.querySelectorAll(target) ); 
                     for( cur of arrList ){
                         cur.classList.remove( animateClass );
                         cur.classList.add( animateClass );
