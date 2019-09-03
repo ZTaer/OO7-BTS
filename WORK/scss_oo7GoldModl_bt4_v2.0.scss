@@ -247,7 +247,7 @@ a{
 		width: $img_w;
 		max-height: $img_h;
 		overflow: hidden;
-
+		display: block;
 		img{
 			position: relative;
 			left:50%;
