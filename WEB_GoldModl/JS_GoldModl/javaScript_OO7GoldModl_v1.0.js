@@ -68,7 +68,9 @@ const oo7 = ( function( global ){
             if (typeof callback === 'function') callback()
         }
 
-        node[ node.length - 1 ].removeEventListener('animationend', handleAnimationEnd)
+        if( (node.length - 1) >= 0 ){
+          node[ node.length - 1 ].addEventListener('animationend', handleAnimationEnd);
+        }
 
     }
 
