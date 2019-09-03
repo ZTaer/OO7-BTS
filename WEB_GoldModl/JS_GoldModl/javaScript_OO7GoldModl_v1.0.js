@@ -54,7 +54,7 @@ const oo7 = ( function( global ){
     //      animateCSS( 类名, 动画名, 函数-动画完毕后执行 )
     //  示例:
     //      target='#test'; animate='fadeInUp';
-    //      animateCSS(target, animate);
+    //      animateCSS(target, animate, () => console.log('回调函数，执行完动画后,在执行此函数') );
     function animateCSS(element, animationName,  callback){
 
         const node = Array.from( document.querySelectorAll(element) )
