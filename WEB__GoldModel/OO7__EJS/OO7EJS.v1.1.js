@@ -1,9 +1,9 @@
 
-/*********** javaScript_OO7GoldModl v1.0 目录 *****/
+/*********** OO7EJS.v1.1 目录 *****/
 /*
-	javaScript_OO7GoldModl 为js轻量级框架,你可以把他了解为短小精悍的小钢炮
+	OO7EJS.v1.1 为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
-	源码链接: https://github.com/ZTaer/OO7_GoldModl/tree/master/WEB_GoldModl/JS_GoldModl
+	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
 	
 	0. 防出错类
