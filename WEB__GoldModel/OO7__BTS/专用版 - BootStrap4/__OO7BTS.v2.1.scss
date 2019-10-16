@@ -42,7 +42,9 @@ ol,ul,li{
 }
 
 a{
-	text-decoration:none;
+	&:hover{
+		text-decoration:none;
+	}
 }
 
 .oo7-animate{ 
