@@ -1,7 +1,7 @@
 
-/*********** scss_oo7GoldModl_bt4_v2.0 目录 *****/
+/*********** OO7BTS.v2.6 目录 *****/
 /*
-	scss_oo7GoldModl为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
+	OO7BTS.v2.1为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
 	源码链接: https://github.com/ZTaer/OO7_GoldModl/tree/master/WEB_GoldModl/SCSS_GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
@@ -19,7 +19,7 @@
 		3-1. 字体不换行且文本溢出时显示省略标记(...): font-nowrap();
 		3-2. 字体自动换行文本溢出时显示省略标记(...): font-wrap(); // 暂时维护
 		3-3. 常用中文字体以及图片排版,图片为自适应,支持电脑/移动端: font-zh( 字体大小, 字体颜色, 字体行高, 字体间距  ) ps: 使用默认值即可 ;
-
+		3-4. 固定范围显示字体: font-hidden( 显示宽度 , 显示高度 );
 	4. 布局类
 		4-0. 根据宽度"等比例缩放"大小高度: img-autosize( 原始图片宽度,原始图片高度,容器宽度,容器单位 );
 		4-1. 设置主要内容区域,留出二边间隔,默认0/1200/1920大小为中间内容: div-content( 上下内间大小,书写主要内容区域大小,占用真实空间大小 );
@@ -28,7 +28,11 @@
 	5. 动画类
 		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 ); img-transform-scale-window( 放大倍数 ) - 与img-window()配合;
 		5-1. 自适应背景视频，与oo7.backgroundVideo()配合: background-video-init( 背景图片路径 ); - 简便方法,css中直接写在父类下,HTML要写入对应的class类名
-	6.  其他类
+	6.	辅助类
+		6-0. 以辅助其它第三方库
+		6-1. 灯箱效果-改变灯箱中字体样式: @include help-lightbox-font( 字体大小,颜色,字间距,字体宽度 );
+		6-2. 滑动动画-改变按钮位置以及样式 0. 改变二个按钮之间的位置: help-slick-btn-pos( 设定大于x分辨率生效, 左按钮位置, 右按钮位置, 显示层阶 ) 1. 改变按钮二个默认样式: help-slick-btn-style( 按钮大小, 按钮颜色, 按钮粗度 ) 2. 隐藏按钮开关: help-slick-btn-hidden( 左按钮显示开关, 右按钮显示开关 ) hidden开启隐藏
+	7.	其他类
 	
 */
 
@@ -156,11 +160,11 @@ a{
 	//		font-style( 字体大小, 字体颜色, 字体宽度, 字间距 )
 	//		变量名称为语法的缩写,方便调入修改参数
 	//      @include font-style( 15px, #555, bold,  5 );
-	@mixin font-style( $fs:15px, $c:"#696969", $fw:"normal",  $ls:3){
+	@mixin font-style( $fs:15px, $c:#696969, $fw:normal, $ls:3px){
 		font-size:$fs;
-		color: unquote($c);
-		font-weight: unquote($fw);
-		letter-spacing: $ls + unquote("px");
+		color: $c;
+		font-weight: $fw;
+		letter-spacing: $ls;
 	}
 	
 
@@ -211,6 +215,17 @@ a{
             letter-spacing: $ls + 1px;
             line-height: $lh - 2px;
 		}	
+	}
+
+	// 3-4. 固定范围显示字体
+	//	用法:
+	// 		font-hidden( 显示宽度 , 显示高度 );
+	//  实例:
+	// 		@include font-hidden( 100%,  150px );
+	@mixin font-hidden( $w, $h ){
+		width:$w;
+		height:$h;
+		overflow: hidden;
 	}
 
 // 3. 字体类-END
@@ -428,5 +443,72 @@ a{
 
 // 5. 动画类-END
 
-// 6. 其他类-BGN
-// 6. 其他类-END
+// 6. 辅助类-BGN
+	// 6-1. 灯箱效果-改变灯箱中字体样式
+	//  配合:
+	//  	效果查询: http://ashleydw.github.io/lightbox/
+	//		CDN: <link rel="stylesheet" href="https://cdn.staticfile.org/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous" />
+	//	用法:
+	//		@include help-lightbox-font( 字体大小,颜色,字间距,字体宽度 );
+	//  实例:
+	//		@include help-lightbox-font( 15px,#696969,5px,lighter );
+	@mixin help-lightbox-font( $fz:1.1rem, $c:#333, $ls:3px, $fw:bold ){
+		.modal-header{
+			.modal-title{
+				font-size: $fz !important;
+				color:$c !important;
+				letter-spacing: $ls !important;
+				font-weight: $fw !important;
+			}
+	
+		}
+
+	}
+
+	// 6-2. 滑动动画-改变按钮位置以及样式
+	//  配合:
+	//  	icon查询: https://fontawesome.com/icons?d=gallery
+	//		CDN: <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.6.3/css/all.min.css" >
+	//	用法:
+	//		1. 改变二个按钮之间的位置: help-slick-btn-pos( 设定大于x分辨率生效, 左按钮位置, 右按钮位置, 显示层阶 )
+	// 		2. 改变按钮二个默认样式: mixin help-slick-btn-style( 按钮大小, 按钮颜色, 按钮粗度 )
+	// 		3. 隐藏按钮开关: help-slick-btn-hidden( 左按钮显示开关, 右按钮显示开关 ) hidden开启隐藏
+	//  实例:
+	//		 @include help-slick-btn-style(); // 设定按钮样式 
+	// 		 @include help-slick-btn-pos( 765px,-2.3rem,-1.8rem ); // 大于765px分辨率时，起作用
+	//       @include help-slick-btn-hidden( hidden ); // 只隐藏左边按钮
+	@mixin help-slick-btn-pos( $sm:756px, $l:-2.3rem, $r:0, $z:999 ) {
+		@media( min-width:$sm ) {
+			.slick-next,.slick-prev{
+				z-index:$z;
+			}
+			.slick-prev{
+				left:$l;
+			}
+			.slick-next{
+				right:$r;
+			}
+		}
+	}
+
+	@mixin help-slick-btn-style( $fz:1.7rem, $c:#dc3545, $fw:normal ) {
+		.slick-prev:before, .slick-next:before{
+			font-size: $fz !important;
+			color: $c !important;
+			font-weight: $fw !important;
+		}
+	}
+
+	@mixin help-slick-btn-hidden( $l:visible, $r:visible ) {
+		.slick-prev:before{
+			visibility: $l;
+		}
+		.slick-next:before{
+			visibility: $r;
+		}
+	}
+
+// 6. 辅助类-END
+
+// 7. 其他类-BGN
+// 7. 其他类-END
