@@ -1,32 +1,34 @@
 
-/*********** OO7EJS.v1.1 目录 *****/
+/*********** OO7EJS.v2.0 目录 *****/
 /*
-	OO7EJS.v1.1 为js轻量级框架,你可以把他了解为短小精悍的小钢炮
+	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
 	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
 	
-	0. 防出错类
-	1. 字符串类
-        
-	2. 计算类
-        
-    3. 动画类
-        3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
-        3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
-        3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
-        3-3. 自适应背景视频，与scss_oo7GoldModl_bt4_v2.0.scss配合: backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
-    4. 交互类
+  0. 防出错类 - oo7Init
 
-    6. 其他类
+	1. 字符串类 - oo7Str
+        
+	2. 计算类 - oo7Cul
+        
+  3. 动画类 - oo7Ani
+      3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
+      3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
+      3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+      3-3. 自适应背景视频，与OO7BTS.scss配合: 变量初始化BackgroundVideoInit() backgroundVideo( 初始化变量, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+
+  4. 交互类 - oo7Ui
+
+  6. 其他类 - oo7Other
 	
 */
 
 
-// OO7黄金模块
-const oo7 = ( function( global ){
 
-    //////////////////// 3. 动画类-BGN
+//////////////////// 3. 动画类-BGN
+const oo7Ani = ( function( global ){
+
 
     // 3-0. 动画初始化以及准备
     //  需求:
@@ -42,9 +44,9 @@ const oo7 = ( function( global ){
     //      1. ScrollWatch.js
     //              CDN: <script src="https://cdn.jsdelivr.net/npm/scrollwatch@2.0.1/dist/ScrollWatch-2.0.1.min.js" integrity="sha256-jmgGQvZd2hgK8fxYGFYWPni/wP3c6/JkiMdUq5Ww3j8=" crossorigin="anonymous"></script>
     //              效果查询: https://edull24.github.io/ScrollWatch/
-    //      2. 准备CSS: .oo7-Animate{ opacity: 0; }
-    //      3. scss_oo7GoldModl_bt4_v2.0.scss:
-    //              源码链接: https://github.com/ZTaer/OO7_GoldModl/tree/master/
+    //      2. 准备CSS: .oo7-animate{ opacity: 0; }
+    //      3. 准备SCSS: OO7BTS.scss
+    //              源码链接: https://github.com/ZTaer/OO7GoldModl/
 
 
     // 3-1. 单个类执行动画,与Animate.css配合使用
@@ -106,33 +108,30 @@ const oo7 = ( function( global ){
     }
 
 
-    // 3-3. 自适应背景视频，与scss_oo7GoldModl_bt4_v2.0.scss配合
-    //  来源: https://github.com/rishabhp/bideo.js
-    //  原理: https://codetheory.in/html5-fullscreen-background-video/
-    //  需求:
-    //      0. scss_oo7GoldModl_bt4_v2.0.scss
-    //	用法:
-    //      HTML: 核心class名 - .background-video-tab - .background-video-img - .background-video-container,详细使用情况请看示例
-    //      CSS: @include background-video-init( 背景图片路径 ); - 简便方法,在CSS中直接写在父类下,HTML要写入对应的class类名
-    //      JS: oo7.backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
-    //  示例:
-    //		HTML:
-    //		  <div id="test" >
-    // 				<video id="background-video-tab" loop muted></video>
-    //   			<div class="background-video-img"></div>
-    //   			<div class="background-video-container"></div>
-    //     	</div>
-    // 		CSS:
-    // 			#test{ 
-    // 				方法二
-    //				@include background-video-init( 'test.jpg' );
-    //			}
-    //      js:
-    //			let bv;( 不同变量名称，创建不同的背景视频,允许多个背景视频同时存在 )
-    //			oo7.backgroundVideo(bv,'#test',['网页视频路径','本地视频路径'],'.background-video-tab','.background-video-img',0);
-    // ;
+  // 3-3. 自适应背景视频，与OO7BTS.scss配合
+  //  来源: https://github.com/rishabhp/bideo.js
+  //  原理: https://codetheory.in/html5-fullscreen-background-video/
+  //	用法:
+  //      HTML: 核心class名 - .background-video-tab - .background-video-img - .background-video-container,详细使用情况请看示例
+  //      CSS: @include background-video-init( 背景图片路径 ); 
+  //      JS: let bv = new oo7.backgroundVideoInit()背景视频初始化; oo7.backgroundVideo( 变量名称(bv), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+  //  示例:
+  //		HTML:
+	//			<div id="test" >
+	// 				<video id="background-video-tab" loop muted></video>
+	//   			<div class="background-video-img"></div>
+	//   			<div class="background-video-container"></div>
+	//      	</div>
+	// 		SCSS:
+	// 			#test{ 
+	//				@include background-video-init( 'test.jpg' ); // 此scss函数为OO7BTS中: https://github.com/ZTaer/OO7GoldModl
+	//			}
+	//      js:
+	//			let bv = new oo7.BackgroundVideoInit();( 不同变量名称，创建不同的背景视频,允许多个背景视频同时存在 )
+ 	//			oo7.backgroundVideo( bv,'#test', ['网页视频路径','本地视频路径'] ); 或者 oo7.backgroundVideo(bv,'#test',['网页视频路径','本地视频路径'],'.background-video-tab','.background-video-img',0);
+	// ;
 
-    function Background_video() {
+    function BackgroundVideoInit() {
         // Plugin options
         this.opt = null;
         // The Video element
@@ -310,37 +309,17 @@ const oo7 = ( function( global ){
         };
       }
 
-    //////////////////// 3. 动画类-END
+      function backgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable = '.background-video-tab', bvImg = '.background-video-img', mPlay='768px' ){
 
-
-    return {
-
-        // 3. 动画类
-        animateCSS: ( element, animationName, callback ) => {
-            animateCSS( element, animationName, callback );
-        },
-        moreAnimateCSS: (  activeId, fatherId, classGroup, animate, animateClass ) => {
-            moreAnimateCSS(activeId, fatherId, classGroup, animate, animateClass );
-        },
-        backgroundVideo: ( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable = '.background-video-tab', bvImg = '.background-video-img', mPlay='768px' ) => {
-            bvInit = new Background_video();
-      
-            console.log('start');
-      
             bvInit.init({
-              
               // 0. 抓取HTML视频标签
               videoEl: document.querySelector( `${bvFather} ${bvTable}` ),
-          
               // 1. 抓取容器 - 视频父类标签
               container: document.querySelector( bvFather ),
-          
               // 自动调整视频大小，达到background-size:cover;效果
               resize: true,
-          
               // 检测到移动端停止播放视频
               isMobile: window.matchMedia(`(max-width: ${mPlay} )`).matches,
-          
               // 2. 获取视频路径,并限制格式( 这里可以多准备几个视频,防止视频出错 )
               src: [
                 {
@@ -352,17 +331,38 @@ const oo7 = ( function( global ){
                   type: 'video/mp4'
                 }
               ],
-          
               // 3. 设置视频缓冲图片背景图  
               onLoad: function () {
                 document.querySelector( `${bvFather} ${bvImg}` ).style.display = 'none';
               }
             });
+
+      }
+
+
+
+    return {
+
+        // 3. 动画类
+        animateCSS: ( element, animationName, callback ) => {
+            animateCSS( element, animationName, callback );
+        },
+        moreAnimateCSS: (  activeId, fatherId, classGroup, animate, animateClass ) => {
+            moreAnimateCSS(activeId, fatherId, classGroup, animate, animateClass );
+        },
+
+        BackgroundVideoInit: BackgroundVideoInit,
+
+        backgroundVideo: ( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay ) => {
       
-          },
+          backgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay );
+      
+        },
 
     }
 
 
 } )( window );
+
+//////////////////// 3. 动画类-END
 

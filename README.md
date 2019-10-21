@@ -5,8 +5,11 @@
 <pre>
 	<h2>WEB_GoldModl:</h2>
 		<h3>0. OO7__EJS - 自我开发JS轻量级框架:</h3>
-			<b>a) 正常成长中</b>
-			OO7EJS.v1.1.js
+			<b>a) 导入版 - WebPack</b>
+				OO7EJS.v1.1.js
+			<b>a) 普通版 - IIFF</b>
+				OO7JS.v1.0.js
+				OO7JS.v2.0.js
 		<h3>1. OO7__BTS - 自我开发SCSS轻量级框架:</h3>
 			<b>a) 专用版 - BootStrap4</b>
 				OO7BTS.v2.1.scss
@@ -19,16 +22,40 @@
 
 <hr/>
 <pre>
-	<h2>TEST:</h2>
-		<h3>0. 实验区,实验些代码</h3>
+	<h2>WORK:</h2>
+		<h3>0. 稳定版本发布区</h3>
+			进入此文件夹查看即可
 </pre>
 <hr/>
 
 
 <hr/>
 <pre>
-	<h2>WORK:</h2>
-		<h3>0. 稳定版本发布区</h3>
+	<h2>OO7JS:</h2>
+		<h3>成长中...</h3>
+/*********** OO7JS.v2.0 目录 *****/
+/*
+	OO7JS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
+	作者: __OO7__
+	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
+	
+	0. 防出错类 - oo7Init
+
+	1. 字符串类 - oo7Str
+        
+	2. 计算类 - oo7Cul
+        
+    3. 动画类 - oo7Ani
+		3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
+		3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
+		3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+		3-3. 自适应背景视频，与OO7BTS.scss配合: 变量初始化BackgroundVideoInit(); backgroundVideo( 初始化变量, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+
+    4. 交互类 - oo7Ui
+
+    6. 其他类 - oo7Other
+	
+*/
 </pre>
 <hr/>
 
@@ -37,31 +64,30 @@
 <pre>
 	<h2>OO7EJS:</h2>
 		<h3>成长中...</h3>
-/*********** OO7EJS.v1.0 目录 *****/
+/*********** OO7EJS.v1.1 目录 *****/
 /*
 	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
-	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
 	
-	0. 防出错类
-	1. 字符串类
-        
-	2. 计算类
-        
-    3. 动画类
-        3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
-        3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
-        3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
-        3-3. 自适应背景视频，与scss_oo7GoldModl_bt4_v2.0.scss配合: backgroundVideo( 变量名称, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
-    4. 交互类
+	0. 防出错类 - OO7Init
 
-    6. 其他类
+	1. 字符串类 - OO7Str
+        
+	2. 计算类 - OO7Cul
+        
+    3. 动画类 - OO7Ani
+		3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
+		3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
+		3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+
+    4. 交互类 - OO7Ui
+
+    6. 其他类 - OO7Other
 	
 */
 </pre>
 <hr/>
-
 
 <hr/>
 <pre>

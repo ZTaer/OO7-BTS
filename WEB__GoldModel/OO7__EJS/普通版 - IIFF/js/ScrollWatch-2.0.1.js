@@ -659,5 +659,6 @@ ScrollWatch.prototype = {
 
 };
 
+export default ScrollWatch;
 return ScrollWatch;
 }));
