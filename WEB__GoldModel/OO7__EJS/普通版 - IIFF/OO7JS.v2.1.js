@@ -1,5 +1,5 @@
 
-/*********** OO7EJS.v2.0 目录 *****/
+/*********** OO7EJS.v2.1 目录 *****/
 /*
 	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
@@ -16,7 +16,7 @@
       3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
       3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
       3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
-      3-3. 自适应背景视频，与OO7BTS.scss配合: 变量初始化BackgroundVideoInit() backgroundVideo( 初始化变量, 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+      3-3. 自适应背景视频，与OO7BTS.scss配合: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
 
   4. 交互类 - oo7Ui
 
@@ -114,21 +114,21 @@ const oo7Ani = ( function( global ){
   //	用法:
   //      HTML: 核心class名 - .background-video-tab - .background-video-img - .background-video-container,详细使用情况请看示例
   //      CSS: @include background-video-init( 背景图片路径 ); 
-  //      JS: let bv = new oo7.backgroundVideoInit()背景视频初始化; oo7.backgroundVideo( 变量名称(bv), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+  //      JS: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
   //  示例:
   //		HTML:
-	//			<div id="test" >
-	// 				<video id="background-video-tab" loop muted></video>
-	//   			<div class="background-video-img"></div>
-	//   			<div class="background-video-container"></div>
-	//      	</div>
+	//			<div id="container" class="intro-window-img"> 
+  //          <video class="background-video-tab" loop muted></video>
+  //          <div class="background-video-img" ></div>
+  //          <div class="background-video-container"></div>
+  //      </div>
 	// 		SCSS:
-	// 			#test{ 
-	//				@include background-video-init( 'test.jpg' ); // 此scss函数为OO7BTS中: https://github.com/ZTaer/OO7GoldModl
-	//			}
-	//      js:
-	//			let bv = new oo7.BackgroundVideoInit();( 不同变量名称，创建不同的背景视频,允许多个背景视频同时存在 )
- 	//			oo7.backgroundVideo( bv,'#test', ['网页视频路径','本地视频路径'] ); 或者 oo7.backgroundVideo(bv,'#test',['网页视频路径','本地视频路径'],'.background-video-tab','.background-video-img',0);
+	// 			#container{
+  //        @include background-video-init( '../images/bg-video_Moment.jpg' );
+  //      }
+	//    JS:
+	//			let bvInit = new oo7Ani.BackgroundVideoInit();
+  //      oo7Ani.backgroundVideo( bvInit,'#container', ['../static/images/bg-video.mp4'],'.background-video-tab','.background-video-img','0px');
 	// ;
 
     function BackgroundVideoInit() {
