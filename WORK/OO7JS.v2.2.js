@@ -1,5 +1,5 @@
 
-/*********** OO7EJS.v2.1 目录 *****/
+/*********** OO7EJS.v2.2 目录 *****/
 /*
 	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
@@ -19,6 +19,8 @@
       3-3. 自适应背景视频，与OO7BTS.scss配合: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
 
   4. 交互类 - oo7Ui
+      4-0. 清除指定目标class名: oo7Ui.clearAllClass( 目标class类名, 删除目标中class类名 );
+      4-1. 选中单个按钮 - 指定目标进行单选样式变化: oo7Ui.clickOnlyAddClass( 目标父类ID, 目标class名, 所增加class名 );
 
   6. 其他类 - oo7Other
 	
@@ -366,3 +368,66 @@ const oo7Ani = ( function( global ){
 
 //////////////////// 3. 动画类-END
 
+
+//////////////////// 4. 交互类-BGN
+
+oo7Ui = ( function(){
+
+  
+  // 4-0. 清除指定目标class名
+  //	用法:
+  //      oo7Ui.clearAllClass( 目标class类名, 删除目标中class类名 );
+  //  示例:
+  //      HTML: <a class="btn active" ></a> <a class="btn active" ></a>
+  //      JS: oo7Ui.clearAllClass( '.btn', 'active' );
+  function clearAllClass( tar, classitem ){
+    Array.from(document.querySelectorAll( `${tar},${tar} *` )).forEach( cur => cur.classList.remove( classitem )); 
+  }
+
+  // 4-1. 选中单个按钮 - 指定目标进行单选样式变化
+  //	用法:
+  //      oo7Ui.clickOnlyAddClass( 目标父类ID, 目标class名, 所增加class名 );
+  //  示例:
+  //      HTML: 
+  /*
+            <div class="#product">
+                <a href="#" class="btn-more">
+                  牡丹
+                </a>
+                <a href="#" class="btn-more">
+                  芍药
+                </a>
+                <a href="#" class="btn-more">
+                  苗木
+                </a>
+            </div>
+  */
+  //      CSS: 
+  //        .active{ background: #144d41; color:#f8f8f8; }
+  //      JS:
+  //        oo7Ui.clickOnlyAddClass( '#product', '.btn-more', 'active' );
+  function clickOnlyAddClass( id, tarClassItem, addClassItem ){
+    document.querySelector( id ).addEventListener( 'click', cur => {
+      const btn = cur.target.closest( tarClassItem );
+      if( btn != null ){
+        clearAllClass( tarClassItem, addClassItem );
+        btn.classList.add( addClassItem );
+      }
+    } );
+  }
+
+  return {
+
+    clearAllClass: ( tar, classitem ) => {
+      clearAllClass( tar, classitem );
+    },
+
+    clickOnlyAddClass: ( id, tarClassItem, addClassItem ) => {
+      clickOnlyAddClass( id, tarClassItem, addClassItem );
+    }
+
+  }
+
+} )();
+
+//////////////////// 4. 交互类-END
