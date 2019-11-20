@@ -139,8 +139,8 @@ const oo7Ani = ( function( global, oo7Str ){
         let obj = {
           id: e[0].replace('#',''),
           target: e[1].split(',').map( e=>oo7Str.clearStrSpace(e) ),
-          animate: e[2],
-          addClassList: e[3].split(',').map( e=>oo7Str.clearStrSpace(e) ),
+          animate: e[2] ? e[2] : 'fadeInDown',
+          addClassList: e[3] ? e[3].split(',').map( e=>oo7Str.clearStrSpace(e) ) : '',
         }
 
         // 初始化目标: 将所有目标opacity设定为0
