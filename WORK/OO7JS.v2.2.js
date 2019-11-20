@@ -162,7 +162,10 @@ const oo7Ani = ( function( global, oo7Str ){
           let target = e.target.map( cur => `#${e.id} ${cur}` ).join(',');
           
           // 显示目标
-          Array.from(document.querySelectorAll( target )).forEach( e=>e.style.opacity=1 );
+          Array.from(document.querySelectorAll( target )).forEach( cur=> {
+            cur.style.opacity=1;
+            cur.classList.add( ...e.addClassList );
+          } );
           
           // 执行动画
           animateCSS( target, e.animate );
