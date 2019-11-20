@@ -8,8 +8,8 @@
 			<b>a) 导入版 - WebPack</b>
 				OO7EJS.v1.1.js
 			<b>a) 普通版 - IIFF</b>
-				OO7JS.v1.0.js
-				OO7JS.v2.0.js
+				OO7JS.v1.1.js
+				OO7JS.v2.2.js
 		<h3>1. OO7__BTS - 自我开发SCSS轻量级框架:</h3>
 			<b>a) 专用版 - BootStrap4</b>
 				OO7BTS.v2.1.scss
@@ -33,7 +33,7 @@
 <pre>
 	<h2>OO7JS:</h2>
 		<h3>成长中...</h3>
-/*********** OO7JS.v2.0 目录 *****/
+/*********** OO7JS 目录 *****/
 /*
 	OO7JS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
@@ -42,13 +42,14 @@
 	0. 防出错类 - oo7Init
 
 	1. 字符串类 - oo7Str
+		1-0. 清除字符串中的空格: oo7Str.clearStrSpace( 字符串 )
         
 	2. 计算类 - oo7Cul
         
     3. 动画类 - oo7Ani
 		3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
 		3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
-		3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+		3-2. 多个类执行动画,与Animate.css配合使用: oo7Ani.moreAnimateInit( [ 目标所在父类ID, 目标类名(用逗号隔开), 动画名, 添加的类名( 用逗号隔开 ) ] ): 返回一个初始化数组; oo7Ani.moreAnimateCSS( 当前视图所在ID, 初始化返回的数组 ): 执行动画, 需滚动监听配合
 		3-3. 自适应背景视频，与OO7BTS.scss配合: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
 
     4. 交互类 - oo7Ui
@@ -64,7 +65,7 @@
 <pre>
 	<h2>OO7EJS:</h2>
 		<h3>成长中...</h3>
-/*********** OO7EJS.v1.1 目录 *****/
+/*********** OO7EJS 目录 *****/
 /*
 	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
@@ -93,7 +94,7 @@
 <pre>
 	<h2>OO7BTS:</h2>
 		<h3>成长中...</h3>
-/*********** OO7BTS.v2.6 目录 *****/
+/*********** OO7BTS 目录 *****/
 /*
 	OO7BTS为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__

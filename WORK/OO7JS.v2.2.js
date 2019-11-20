@@ -8,14 +8,15 @@
 	
   0. 防出错类 - oo7Init
 
-	1. 字符串类 - oo7Str
+  1. 字符串类 - oo7Str
+      // 1-0. 清除字符串中的空格: oo7Str.clearStrSpace( 字符串 )
         
 	2. 计算类 - oo7Cul
         
   3. 动画类 - oo7Ani
       3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
       3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
-      3-2. 多个类执行动画,与Animate.css配合使用:  moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+      3-2. 多个类执行动画,与Animate.css配合使用: oo7Ani.moreAnimateInit( [ 目标所在父类ID, 目标类名(用逗号隔开), 动画名, 添加的类名( 用逗号隔开 ) ] ): 返回一个初始化数组; oo7Ani.moreAnimateCSS( 当前视图所在ID, 初始化返回的数组 ): 执行动画, 需滚动监听配合
       3-3. 自适应背景视频，与OO7BTS.scss配合: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
 
   4. 交互类 - oo7Ui
@@ -27,9 +28,24 @@
 */
 
 
+//////////////////// 1. 字符串类-BGN
+const oo7Str = ( function(){
+  // 1-0. 清除字符串空格
+  function clearStrSpace( str ){
+    return str.replace( /\s*/g,'' );
+  }
+
+  return{
+    clearStrSpace:( str )=>{
+      return clearStrSpace( str );
+    },
+  };
+
+} )();
+//////////////////// 1. 字符串类-END
 
 //////////////////// 3. 动画类-BGN
-const oo7Ani = ( function( global ){
+const oo7Ani = ( function( global, oo7Str ){
 
 
     // 3-0. 动画初始化以及准备
@@ -46,8 +62,7 @@ const oo7Ani = ( function( global ){
     //      1. ScrollWatch.js
     //              CDN: <script src="https://cdn.jsdelivr.net/npm/scrollwatch@2.0.1/dist/ScrollWatch-2.0.1.min.js" integrity="sha256-jmgGQvZd2hgK8fxYGFYWPni/wP3c6/JkiMdUq5Ww3j8=" crossorigin="anonymous"></script>
     //              效果查询: https://edull24.github.io/ScrollWatch/
-    //      2. 准备CSS: .oo7-animate{ opacity: 0; }
-    //      3. 准备SCSS: OO7BTS.scss
+    //      2. 准备SCSS: OO7BTS.scss
     //              源码链接: https://github.com/ZTaer/OO7GoldModl/
 
 
@@ -82,31 +97,77 @@ const oo7Ani = ( function( global ){
     //  需求:
     //      0. Animate.css
     //      1. ScrollWatch.js
+    //  解析:
+    //      0. oo7Ani.moreAnimateInit( [ 目标所在父类ID, 目标类名(用逗号隔开), 动画名, 添加的类名( 用逗号隔开 ) ] ): 返回一个初始化数组
+    //      1. oo7Ani.moreAnimateCSS( 当前视图所在ID, 初始化返回的数组 ): 执行动画, 需滚动监听配合
     //	用法:
-    //      HTML: 待动画标签加入类名.oo7-Animate
-    //      CSS: .oo7-animate{ opacity: 0; }
-    //      JS: moreAnimateCSS( 当前视图标签ID, 父类ID--css选中方式, 要执行动画的子类--css选中方式，动画效果--animate.css配合, 附加类--目的是自定义css来操控动画 )
+    /**     HTML:
+             <div id="test"> 
+              <h1> 标题 </h1>
+              <p class="text" > 内容1 </p> 
+              <p class="text" > 内容2 </p> 
+             </div>
+            JS: 
+              0. 先进行初始化  
+              let aniObj = moreAnimateInit( [
+                [ "#test", 'h1, .text', 'fadeInDownBig', 'slow, testAddClassName' ],
+                [ " 可以添加更多, 注意逗号 " ]
+              ] );
+              1. 需滚动监听配合使用执行动画
+              let sw = new ScrollWatch({
+                watchOnce: true, // 是否开启不重复监听( 关闭则动画将来回执行 )
+                infiniteOffset: -10, // 偏移量
+                scrollThrottle: 200, // 延迟监听(ms)
+                // inViewClass: 'play', // 给当前视图增加类
+
+                onElementInView: function(data) { // 监听当前视图的标签
+                  activeId = data.el.id;
+                  oo7Ani.moreAnimateCSS( activeId, aniObj ); //( 执行动画核心 )
+                }
+              });
+     */        
+    //      
     //  示例:
     //      activeId = 'test' // 当前视图ID
     //      oo7.moreAnimateCSS( activeId, '#wan_banner1',['h1','h2'],'bounceIn' );
-    function moreAnimateCSS( activeId, fatherId, classGroup, animate = 'fadeInUp', animateClass='' ){
-        if( fatherId.includes(activeId) ){
-            for( cur of classGroup ){
-                let target = `${fatherId} ${cur}`; 
 
-                Array.from(document.querySelectorAll(target)).forEach( cur => cur.classList.toggle('oo7-animate') );
-                animateCSS(target, animate);
-
-                if( animateClass ){
-                    arrList = Array.from( document.querySelectorAll(target) ); 
-                    for( cur of arrList ){
-                        cur.classList.remove( animateClass );
-                        cur.classList.add( animateClass );
-                    }
-                }
-                
-            }
+    // 初始化用户参数
+    function moreAnimateInit( group ){
+      let result = [];
+      group.forEach( e => {
+        // 创建对象
+        let obj = {
+          id: e[0].replace('#',''),
+          target: e[1].split(',').map( e=>oo7Str.clearStrSpace(e) ),
+          animate: e[2],
+          addClassList: e[3].split(',').map( e=>oo7Str.clearStrSpace(e) ),
         }
+
+        // 初始化目标: 将所有目标opacity设定为0
+        let target = obj.target.map( e=> `#${obj.id} ${e}`).join(',');
+        Array.from(document.querySelectorAll( target )).forEach( e=>e.style.opacity = 0 ); 
+
+        result.push(obj);  
+      } );
+
+      return result;
+    }
+
+    function moreAnimateCSS( activeId, aniObj ){
+      // 过滤出符合条件的目标
+      let activeGroup = aniObj.filter( e => e.id == activeId );
+      if( activeGroup.length > 0 ){
+        activeGroup.forEach( e => {
+          // 确定目标
+          let target = e.target.map( cur => `#${e.id} ${cur}` ).join(',');
+          
+          // 显示目标
+          Array.from(document.querySelectorAll( target )).forEach( e=>e.style.opacity=1 );
+          
+          // 执行动画
+          animateCSS( target, e.animate );
+        } );
+      }
     }
 
 
@@ -347,10 +408,13 @@ const oo7Ani = ( function( global ){
 
         // 3. 动画类
         animateCSS: ( element, animationName, callback ) => {
-            animateCSS( element, animationName, callback );
+          animateCSS( element, animationName, callback );
         },
-        moreAnimateCSS: (  activeId, fatherId, classGroup, animate, animateClass ) => {
-            moreAnimateCSS(activeId, fatherId, classGroup, animate, animateClass );
+        moreAnimateCSS: (  activeId, aniObj ) => {
+            moreAnimateCSS(activeId, aniObj );
+        },
+        moreAnimateInit: ( group ) => {
+            return moreAnimateInit( group );
         },
 
         BackgroundVideoInit: BackgroundVideoInit,
@@ -364,7 +428,7 @@ const oo7Ani = ( function( global ){
     }
 
 
-} )( window );
+} )( window, oo7Str );
 
 //////////////////// 3. 动画类-END
 
