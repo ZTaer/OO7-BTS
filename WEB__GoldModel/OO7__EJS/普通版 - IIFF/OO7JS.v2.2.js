@@ -167,8 +167,20 @@ const oo7Ani = ( function( global, oo7Str ){
             cur.classList.add( ...e.addClassList );
           } );
           
-          // 执行动画
-          animateCSS( target, e.animate );
+          // 异步执行动画,保证执行效率
+          async function exeAnimateCSS( target, animate  ){
+            try{
+              if( target.length > 0 ){
+                // 执行动画
+                animateCSS( target, animate );
+              }
+            }
+            catch{
+              console.log( '动画执行失败' );
+            }
+          }
+          exeAnimateCSS( target, e.animate );
+
         } );
       }
     }
@@ -423,9 +435,16 @@ const oo7Ani = ( function( global, oo7Str ){
         BackgroundVideoInit: BackgroundVideoInit,
 
         backgroundVideo: ( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay ) => {
-      
-          backgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay );
-      
+          // 异步执行动态背景视频,提高效率
+          async function exeBackgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay ){
+            try{
+              backgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay );
+            }
+            catch{
+              console.log('获取视频失败');
+            }
+          }
+          exeBackgroundVideo( bvInit,bvFather,[bvSrcWeb, bvSrcInner],bvTable, bvImg, mPlay );
         },
 
     }
