@@ -101,14 +101,21 @@
 	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
 	
+	OO7BTS为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
+	作者: __OO7__
+	源码链接: https://github.com/ZTaer/OO7GoldModl
+	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
+	
 	0. 防出错类
 	1.	flex函数类
 		1-0. 开启弹性布局,有兼容性: display-flex( [flex-direction] )
 		1-1. 单行flex布局，含兼容性: xy-items( justify-content, align-items, [flex-wrap] );
 		1-2. 多行flex布局，含兼容性: xy-content( justify-content, align-items, align-content, [flex-wrap] )
 	2. 颜色类
-		2-0. 预计开发快捷渐变
+		2-0. 快捷创建背景渐变色( 只能用于背景颜色的改变 ): bg-linear( 渐变左颜色, 渐变右颜色, 渐变开始方向, 渐变结束方向  )
+			2-0-0. 推荐渐变颜色: bg-linear-xxx();
 		2-1. 修改placeholder颜色: placeholder-color( 字体大小, 字体颜色, 字间距 )
+		2-2. 修改字体选中颜色: choose-text-color( 字体颜色,背景颜色 )
 	3. 字体类
 		3-0. 快捷设置字体格式: font-style( 字体大小, 字体颜色, 字体宽度, 字间距 )
 		3-1. 字体不换行且文本溢出时显示省略标记(...): font-nowrap();
@@ -121,8 +128,8 @@
 		4-2. 图片不变形显示,防止在后台因放不同尺寸图片，造成前台因图片尺寸不同造成的布局变形,默认图片位置为center: img-window( 图片宽度,图片高度,图片x方向位置,图片y方向位置 );
 		4-3. pc端翻页样式,只适合页面数小于10页,并且要求ul结构为 ul -> li -> a: ul-fanye-pc( 按钮边框设置, 按钮外间距, 按钮内间距, 按钮背景颜色, 按钮字体颜色 );
 	5. 动画类
-		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 ); img-transform-scale-window( 放大倍数 ) - 与img-window()配合;
-		5-1. 自适应背景视频，与oo7.backgroundVideo()配合: background-video-init( 背景图片路径 ); - 简便方法,css中直接写在父类下,HTML要写入对应的class类名
+		5-0. 图片放大/缩小动画过度效果,注意二者函数配合才能实现放大动画效果，但是img-transition也可以单独使用,配合hover效果( 考虑到灵活性 ): img-transition( 动画时间 ); img-transform-scale( 放大倍数 ); 
+		5-1. 自适应背景视频，与backgroundVideoInit()配合: background-video-init( 背景图片路径 ); - 简便方法,css中直接写在父类下,HTML要写入对应的class类名
 	6.	辅助类
 		6-0. 以辅助其它第三方库
 		6-1. 灯箱效果-改变灯箱中字体样式: @include help-lightbox-font( 字体大小,颜色,字间距,字体宽度 );
