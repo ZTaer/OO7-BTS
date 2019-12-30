@@ -101,12 +101,7 @@
 	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
 	
-	OO7BTS为SCSS轻量级框架,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
-	作者: __OO7__
-	源码链接: https://github.com/ZTaer/OO7GoldModl
-	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言scssUser )
-	
-	0. 防出错类
+	1. 防出错类
 	1.	flex函数类
 		1-0. 开启弹性布局,有兼容性: display-flex( [flex-direction] )
 		1-1. 单行flex布局，含兼容性: xy-items( justify-content, align-items, [flex-wrap] );
@@ -122,6 +117,7 @@
 		3-2. 字体自动换行文本溢出时显示省略标记(...): font-wrap(); // 暂时维护
 		3-3. 常用中文字体以及图片排版,图片为自适应,支持电脑/移动端: font-zh( 字体大小, 字体颜色, 字体行高, 字体间距  ) ps: 使用默认值即可 ;
 		3-4. 固定范围显示字体: font-hidden( 显示宽度 , 显示高度 );
+		3-5. 取消标签鼠标双击选中效果: font-no-select();
 	4. 布局类
 		4-0. 根据宽度"等比例缩放"大小高度: img-autosize( 原始图片宽度,原始图片高度,容器宽度,容器单位 );
 		4-1. 设置主要内容区域,留出二边间隔,默认0/1200/1920大小为中间内容: div-content( 上下内间大小,书写主要内容区域大小,占用真实空间大小 );
