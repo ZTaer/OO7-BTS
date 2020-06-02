@@ -1,0 +1,26 @@
+@import "./_OO7BTS.v2.2";
+
+body{
+    @include font-style();
+}
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+/*** 背景视频必备 ***/
+#container{
+    @include background-video-init( '../video/11_Moment.jpg' );
+    /** 控制标签高/宽度 **/
+    width:100%;
+    height: 300px;
+}
+/*** 监听动画演示 ***/
+#ani_1{
+    height: 700px;
+    background: red;
+}
+#ani_2{
+    height: 700px;
+    background: pink;
+}

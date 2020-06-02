@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh" >
+
+    <head>
+		<meta charset="utf-8" >
+
+		<!-- 为兼容响应式 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+		
+<!-- ------------- 参数区 --------------- -->
+		<title>临时演示</title>
+
+<!-- ------------- 扩展区-必备 --------------- -->
+		<!-- 动画效果框架-必备 -->
+		<!--
+			效果查询: https://daneden.github.io/animate.css/
+			常用类: 
+				延迟动画: .delay-1s ... .delay-5s
+				时间动画: 
+					加速: .fast( 800ms ) .faster( 500ms )
+					减速: .slow( 2s ) .slower( 3s )
+				无限循环: .infinite
+		-->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/animate.css/3.7.2/animate.css">
+
+<!-- ------------- 本页主CSS --------------- -->
+		<!-- 本地css,后面可以覆盖样式 -->
+		<link rel="stylesheet" href="./static/css/index.css">
+
+	</head>
+    <body >
+<!-- ------------- 主内容区-BGN --------------- -->
+		<!-- 背景视频演示 -->
+		<div id="container" class="intro-window-img" data-scroll-watch > 
+			<video class="background-video-tab" loop muted></video>
+			<div class="background-video-img" ></div>
+			<div class="background-video-container">
+				<h1>
+					在这里写内容代码
+				</h1>
+				<p>
+					ID名称可以修改，class类名正常不必修改
+				</p>
+			</div>
+		</div>
+
+		<!-- 监听动画演示 -->
+		<div id="ani_1" data-scroll-watch >
+			<h1>
+				目标
+			</h1>
+			<p class="mainConent">
+				文档内容
+			</p>
+		</div>
+		<div id="ani_2" data-scroll-watch >
+			<h1>
+				目标
+			</h1>
+			<p class="mainConent">
+				文档内容
+			</p>
+		</div>
+
+
+
+<!-- ------------- 主内容区-END --------------- -->
+
+<!-- ------------- 扩展区-必备-BGN --------------- -->
+
+  <!-- OO7-JS-轻量级框架-必备 -->
+  <!--
+	  源码参考: https://github.com/ZTaer/OO7GoldModl/
+  -->
+  <script src="./static/js/OO7JS.v2.3.js" ></script>
+
+  <!-- 滚动监听-与动画效果配合-必备 -->
+  <!--
+	  效果查询: https://edull24.github.io/ScrollWatch/
+	  常用语法: 开启监听的元素要有 data-scroll-watch 和 ID
+		  示例: <section data-scroll-watch id="banner" ></section>
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/scrollwatch@2.0.1/dist/ScrollWatch-2.0.1.min.js" integrity="sha256-jmgGQvZd2hgK8fxYGFYWPni/wP3c6/JkiMdUq5Ww3j8=" crossorigin="anonymous"></script>
+
+<!-- ------------- 扩展区-必备-END --------------- -->
+
+<!-- ------------- 初始化区-BGN --------------- -->
+		<script>
+			// 3-3. 自适应背景视频，与OO7BTS.scss配合, 不用则复制css代码即可
+			//	用法:
+			//      HTML: 核心class名 - .background-video-tab - .background-video-img - .background-video-container,详细使用情况请看示例
+			//      SCSS: @include background-video-init( 背景图片路径 ); 
+			//      CSS: 看css文件
+			//      JS: let bvInit = new oo7Ani.BackgroundVideoInit(); oo7Ani.backgroundVideo( 变量名称(bvInit), 'css父类容器名',['网页视频路径','本地视频路径'],'标签video类名','视频缓冲图片路径','达到指定分辨率时禁止播放-默认为768px' );
+			//  示例:
+			//		HTML:
+			//		<div id="container" class="intro-window-img"> 
+			//          <video class="background-video-tab" loop muted></video>
+			//          <div class="background-video-img" ></div>
+			//          <div class="background-video-container"></div>
+			//      </div>
+			// 		SCSS:
+			// 		#container{
+			//        @include background-video-init( '../images/bg-video_Moment.jpg' );
+			//      }
+			//    JS:
+			//		let bvInit = new oo7Ani.BackgroundVideoInit();
+			//      oo7Ani.backgroundVideo( bvInit,'#container', ['../static/images/bg-video.mp4'],'.background-video-tab','.background-video-img','0px');
+			// ;
+			let bvInit = new oo7Ani.BackgroundVideoInit();
+			oo7Ani.backgroundVideo( 
+				bvInit,
+				'#container', 
+				['./static/video/11.mp4','备份视频链接'],
+				'.background-video-tab',
+				'.background-video-img',
+				'0px'
+			);
+
+			
+			// 3-2. 多个类执行动画,与Animate.css配合使用
+			//  需求:
+			//      0. Animate.css ( 有CDN链接，在上放有写 - 动画名称查询：https://daneden.github.io/animate.css/ )
+			//      1. ScrollWatch.js ( 有CDN链接，在上放有写 )
+			//  解析:
+			//      0. oo7Ani.moreAnimateInit( [ 目标所在父类ID, 目标类名(用逗号隔开), 动画名, 添加的类名( 用逗号隔开 ) ] ): 返回一个初始化数组
+			//      1. oo7Ani.moreAnimateCSS( 当前视图所在ID, 初始化返回的数组 ): 执行动画, 需滚动监听配合
+			//	用法:
+			/**     HTML:
+					<div id="test"> 
+						<h1> 标题 </h1>
+						<p class="text" > 内容1 </p> 
+						<p class="text" > 内容2 </p> 
+					</div>
+					JS: 
+					0. 先进行初始化  
+					let aniObj = oo7Ani.moreAnimateInit( [
+						[ "#test", 'h1, .text', 'fadeInDownBig', 'slow, testAddClassName' ],
+						[ " 可以添加更多, 注意逗号 " ]
+					] );
+					1. 需滚动监听配合使用执行动画
+					let sw = new ScrollWatch({
+						watchOnce: true, // 是否开启不重复监听( 关闭则动画将来回执行 )
+						infiniteOffset: -10, // 偏移量
+						scrollThrottle: 200, // 延迟监听(ms)
+						// inViewClass: 'play', // 给当前视图增加类
+
+						onElementInView: function(data) { // 监听当前视图的标签
+						activeId = data.el.id;
+						oo7Ani.moreAnimateCSS( activeId, aniObj ); //( 执行动画核心 )
+						}
+					});
+			*/        
+			let aniObj = oo7Ani.moreAnimateInit( [
+				[ "#container", 'h1,p', 'fadeInDown', 'slow' ],
+				[ "#ani_1", 'h1', 'zoomInDown', 'slow' ],
+				[ "#ani_1", '.mainConent', 'bounce', 'slow' ],
+				[ "#ani_2", 'h1, .mainConent', 'zoomIn', '这里加的是class类名'],
+			] );
+			let sw = new ScrollWatch({
+				watchOnce: true, // 是否开启不重复监听( 关闭则动画将来回执行 )
+				infiniteOffset: -10, 
+				scrollThrottle: 200, // 延迟监听(ms)
+				onElementInView: function(data) { // 监听当前视图的标签
+					activeId = data.el.id;
+					oo7Ani.moreAnimateCSS( activeId, aniObj ); //( 执行动画核心 )
+				}
+			});
+
+		</script>
+<!-- ------------- 初始化区-END --------------- -->
+	</body>    
+
+</html>
