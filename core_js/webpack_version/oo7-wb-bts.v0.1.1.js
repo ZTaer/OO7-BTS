@@ -1,20 +1,45 @@
-/**
- * OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
-	作者: __OO7__
-  源码链接/查看功能: https://github.com/ZTaer/OO7GoldModl
- */
-
+// Github: https://github.com/ZTaer/OO7-BTS
 const elementString = {
     start: 'start',
     end: 'end',
 }
 
+//////////////////// 2. 计算类-BGN
+export class OO7Cul{
+
+    // 2-0
+    static objectBoolean(obj) {
+        let result = true;
+        for (let i in obj) {
+            if (typeof obj[i] === "string" && !obj[i].trim()) {
+                result = false;
+                break;
+            }
+            else if (typeof obj[i] === "number" && !obj[i]) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+    // 2-1
+    static nodelistForEach = function( list, callback){  
+    for( let cur of list ){
+        callback( cur );                
+    };
+}
+
+
+}
+//////////////////// 2. 计算类-END
+
+
 
 //////////////////// 3. 动画类-BGN
-class OO7Ani{
+export class OO7Ani{
 
     // 3-1
-    animateCSS(element, animationName,  callback){
+    static animateCSS(element, animationName,  callback){
         const node = Array.from( document.querySelectorAll(element) )
         node.forEach( cur => cur.classList.add('animated', animationName ) ) 
         function handleAnimationEnd() {
@@ -29,7 +54,7 @@ class OO7Ani{
     }
 
     // 3-2
-    moreAnimateCSS( activeId, fatherId, classGroup, animate = 'fadeInUp', animateClass='' ){
+    static moreAnimateCSS( activeId, fatherId, classGroup, animate = 'fadeInUp', animateClass='' ){
 
         if( fatherId.includes(activeId) ){
             console.log( classGroup );
@@ -58,8 +83,3 @@ class OO7Ani{
 }
 //////////////////// 3. 动画类-END
 
-
-/**
- * 输出:
- */
-export { OO7Ani };

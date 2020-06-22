@@ -1,9 +1,9 @@
+// Github: https://github.com/ZTaer/OO7-BTS
 
 /*********** OO7EJS.v2.3 目录 *****/
 /*
 	OO7EJS为js轻量级框架,你可以把他了解为短小精悍的小钢炮
 	作者: __OO7__
-	源码链接: https://github.com/ZTaer/OO7GoldModl
 	如果你有更好的想法可以联系我: QQ - 1069798804 ( 加好友时记得留言jsUser )
 	
   0. 防出错类 - oo7Init

@@ -22,9 +22,9 @@
 <pre>
 	<h3>Native_version: oo7-nv-bts.js 全部功能</h3>
 		
-		1. 防出错类 - oo7Init
+		0. 防出错类 - oo7Init
 
-		2. 字符串类 - oo7Str
+		1. 字符串类 - oo7Str
 			1-0. 清除字符串中的空格: oo7Str.clearStrSpace( 字符串 )
 			
 		2. 计算类 - oo7Cul
@@ -37,18 +37,24 @@
 
 		4. 交互类 - oo7Ui
 
-		6. 其他类 - oo7Other
+		5. 其他类 - oo7Other
 </pre>
 <pre>
 	<h3>Webpack_version: oo7-wb-bts.js 全部功能</h3>
 		
-		1. 防出错类 - oo7Init
+		0. 防出错类 - oo7Init
 
-		2. 字符串类 - oo7Str
+		1. 字符串类 - oo7Str
 			
-		3. 计算类 - oo7Cul
+		2. 计算类 - oo7Cul
+			2-0. 验证对象值是否都为真,如果其中之一为假，则返回假: objectBoolean( object )
+				// a) 注意: object对象只能是"number","string"类型
+			2-1. 回调函数: nodelistForEach( 数组, e=>{} )
+				// a) 用途: 
+					0. 通常配合document.querySelectorAll获取数据在转换的数组，在将数组dom批量加工
+					1. 通常批量处理数组内容
 			
-		4. 动画类 - oo7Ani
+		3. 动画类 - oo7Ani
 			3-0. 动画初始化以及准备( CDN ): Animate.css, ScrollWatch.js, 准备CSS
 			3-1. 单个类执行动画,与Animate.css配合使用: animate( 类名, 动画名, 函数-动画完毕后执行 )
 			3-2. 多个类执行动画,与Animate.css配合使用: oo7Ani.moreAnimateInit( [ 目标所在父类ID, 目标类名(用逗号隔开), 动画名, 添加的类名( 用逗号隔开 ) ] ): 返回一个初始化数组; oo7Ani.moreAnimateCSS( 当前视图所在ID, 初始化返回的数组 ): 执行动画, 需滚动监听配合
@@ -59,7 +65,86 @@
 </pre>
 <pre>
 	<h3>React_version: oo7-react-bts.js 全部功能</h3>
-		等待开发
+		
+		0. 防出错类 - oo7Init
+
+		1. 字符串类 - oo7Str
+			1-0. 多种清空字符串空格，只保留字母和数字，以及是否统一字符串大小写
+				// a) clearString({ 
+					date, 			// 字符串数据
+					all = true,		// 删除全部空格
+					trim = false,	// 删除二边空格
+					left = false,	// 删除左边空格
+					right = false,	// 删除右边空格
+					upper = false,	// 全部大写
+					lower = false,	// 全部小写
+					clear = false   // 清除乱七八糟的符号
+				 })
+			1-1. 便捷式正则处理字符串
+				// a) regularString = ({
+					date,				// 字符串数据
+					onlyAZ = false,		// 字符串仅保留字母
+					only09 = false,		// 字符串仅保留数字
+					allOut = false,		// 输出所有类型数据
+					...otherClearSpace	// 参数参考OO7Str.clearString( 默认只清除字符串二端空格 )
+				})
+			
+		2. 计算类 - oo7Cul
+			2-0. 验证对象值是否都为真,如果其中之一为假，则返回假: objectBoolean( object )
+				// a) 注意: object对象只能是"number","string"类型
+			2-1. 2调函数: nodelistForEach( 数组, e=>{} )
+				// a) 用途: 
+					0. 通常配合document.querySelectorAll获取数据在转换的数组，在将数组dom批量加工
+					1. 通常批量处理数组内容
+			2-2. 数组转对象:
+				// a) arrayToObject({
+					date, 				// 数组数据
+					key = "id",			// 设定对象键值
+					keyName = "keyName"	// 当迭代对象内数据类型为object类型时，增加对应的"键值属性"
+					...other			// 参数参考OO7Str.clearString
+				});
+			2-3. 对象转数组
+				// a) objectToArray({
+					date, 				 // 对象数据
+					keyName = "keyName"	 // 当迭代对象内数据类型为object类型时，增加对应的"键值属性" 
+				});
+			2-4. 数组类型进行排序： 
+				// a) 要求date类型: [ xxx: string | number | time, xxx: string | number | time, ... ]
+				// b) sortArray({
+					date,			 	 // 数组数据 
+					smallToBig = false,	 // 是否输出，从小->大排序
+					bigToSmall = false,  // 是否输出，从大->小排序
+					allOut = false	     // 全部输出
+				});
+				// c) 完整输出：{ smallToBig: [], bigToSmall: [] }
+			2-5. 数组根具迭代的对象键值进行排序：
+				// a) 要求date类型: [{ xxx: string | number | time }, { xxx: string | number | time }...]
+				// b) 要求key类型：为字符串，并且存在迭代的对象中
+				// c) sortArrayObjectKey = ({
+					date,				 // 数组数据
+					key,				 // 要求对比键值，字符串类型
+					smallToBig = false,	 // 是否输出，从小->大排序 
+					bigToSmall = false,  // 是否输出，从大->小排序
+					allOut = false		 // 全部输出
+				})
+				// d) 完整输出：{ smallToBig: [], bigToSmall: [] }
+			2-6. 数组根具迭代的对象"多个键值"进行排序：
+				// a) 要求date类型: [{ xxx: string | number | time }, { xxx: string | number | time }...]
+				// b) 要求key类型：[ "keyName1", "keyName2",... ]其key值必须存在迭代的对象中，否则将报错
+				// c) sortArrayObjectMoreKey = ({
+					date,				// 数组数据
+					key = [],			// 要求对比键值，字符串类型，存放在数组中
+					smallToBig = false,	 // 是否输出，从小->大排序 
+					bigToSmall = false,  // 是否输出，从大->小排序
+					allOut = false		 // 全部输出
+				})
+
+			
+		3. 动画类 - oo7Ani
+
+		4. 交互类 - oo7Ui
+
+		5. 其他类 - oo7Other
 </pre>
 
 <hr/>
@@ -70,7 +155,7 @@
 	<h3>Bootstrap_version: oo7-bts.scss 全部功能</h3>
 	SCSS轻量级框架,配合Bootstrap4,能够更加灵活操作CSS3,你可以把他了解为短小精悍的小钢炮
 
-	0. 防出错类
+	1. 防出错类
 	1.	flex函数类
 		1-0. 开启弹性布局,有兼容性: display-flex( [flex-direction] )
 		1-1. 单行flex布局，含兼容性: xy-items( justify-content, align-items, [flex-wrap] );
